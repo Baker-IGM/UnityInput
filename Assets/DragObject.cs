@@ -7,27 +7,20 @@ public class DragObject : MonoBehaviour
 {
     [SerializeField]
     RectTransform rectTransform;
+    RectTransform parentRectTransform;
 
     [SerializeField]
     Vector2 boardSize;
+    public Vector2 touchPos;
 
     // Use this for initialization
     void Start () {
-        boardSize = transform.parent.GetComponentInParent<RectTransform>().rect.size / 2f;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void OnPointerDown(BaseEventData eventData)
-    {
-        
+        parentRectTransform = transform.parent.GetComponentInParent<RectTransform>();
     }
 
     public void OnDrag(BaseEventData eventData)
     {
-        rectTransform.anchoredPosition = ((PointerEventData)eventData).position - boardSize;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRectTransform, ((PointerEventData)eventData).position, Camera.main, out touchPos);
+        rectTransform.anchoredPosition = touchPos;
     }
 }
