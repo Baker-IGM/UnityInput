@@ -5,16 +5,15 @@ using UnityEngine.EventSystems;
 
 public class DragObject : MonoBehaviour
 {
-    [SerializeField]
     RectTransform rectTransform;
     RectTransform parentRectTransform;
 
     [SerializeField]
-    Vector2 boardSize;
-    public Vector2 touchPos;
+    Vector2 touchPos;
 
     // Use this for initialization
     void Start () {
+        rectTransform = GetComponent<RectTransform>();
         parentRectTransform = transform.parent.GetComponentInParent<RectTransform>();
     }
 
