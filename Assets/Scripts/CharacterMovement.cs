@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -74,21 +75,21 @@ public class CharacterMovement : MonoBehaviour
     /// <summary>
     /// Called when there is a change to the any of the Inputs set in InputActionMap.
     /// </summary>
-    /// <param name="input">Data from the Input Device (Vector2)</param>
-    public void OnMove(InputValue input)
+    /// <param name="inputContext">Data from the Input Device (Vector2)</param>
+    public void OnMove(InputAction.CallbackContext inputContext)
     {
         //  Read the data from the Input System
-        playerInput = input.Get<Vector2>();
+        playerInput = inputContext.ReadValue<Vector2>();
     }
 
     /// <summary>
     /// Called when there is a change to the Orientation of the Input Device.
     /// </summary>
-    /// <param name="input">Data from the Input Device (Vector3)</param>
-    public void OnRotate(InputValue input)
+    /// <param name="inputContext">Data from the Input Device (Vector3)</param>
+    public void OnTilt(InputAction.CallbackContext inputContext)
     {
         //  Read the data from the Input System
-        mobileGravity = input.Get<Vector3>();
+        mobileGravity = inputContext.ReadValue<Vector3>();
 
         //  Find the amount of difference off of the set baseline axes
         playerInput.x = Vector3.Dot(Vector3.right, mobileGravity);
