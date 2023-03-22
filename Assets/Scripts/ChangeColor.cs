@@ -13,6 +13,6 @@ public class ChangeColor : MonoBehaviour
 
     public void NewColor()
     {
-        sprite.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        sprite.color = Random.ColorHSV(0, 1, 1, 1, 1, 1);// new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
     }
 }
